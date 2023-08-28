@@ -457,13 +457,21 @@ ul {
 
 @media screen and (max-width: 450px) {
   .app-container {
+    width: 350px;
+  }
+  .signin-app-container {
+    min-width: 350px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .app-container {
     width: 300px;
   }
   .signin-app-container {
     min-width: 300px;
   }
 }
-
 .agree-popup {
   z-index: 11;
   position: absolute;
