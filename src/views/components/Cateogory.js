@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState, useEffect, useCallback } from "react";
 import {
   createCateogory,
   getCateogory,
@@ -18,23 +18,21 @@ const Cateogory = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    getList();
+  const getList = useCallback(async () => {
+    setLoading(true);
+    try {
+      const res = await getCateogory();
+      setList(res.data);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
   }, []);
 
-  const getList = async () => {
-    setLoading(true);
-    await getCateogory()
-      .then((res) => {
-        setList(() => res.data);
-        setLoading(false);
-      })
-
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-      });
-  };
+  useEffect(() => {
+    getList();
+  }, [getList]);
 
   const setTodoList = async () => {
     if (addValue) {
