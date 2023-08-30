@@ -32,6 +32,7 @@ const Cateogory = () => {
 
   useEffect(() => {
     getList();
+    toast.success("Click on Category to get your task list");
   }, [getList]);
 
   const setTodoList = async () => {
